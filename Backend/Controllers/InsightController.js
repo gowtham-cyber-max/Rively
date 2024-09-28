@@ -6,17 +6,15 @@ const axios=require("axios");
 
 async function addInsight(req,res){
     try{
-        const {head,description}=req.body;
+        const {company,insights}=req.body;
 
         const companyId=getCompanyIdByName(req.body.companyName);
 
-        const insight=new InsightModel({head,companyId,description});
+        const insight=new InsightModel({companyId,insights});
         
         await insight.save();
 
         addInsightToCompetitor(companyId,insight._id);
-
-        res.insight=insight;
     }
     catch(er){
         res.status(400).json({message:er.message});
@@ -47,9 +45,6 @@ async function PythonInsightRequest(competitors){
                 addInsight(req,res);    
             });
 
-
-
-
     }
     catch(er){
         console.log(er)
@@ -57,4 +52,4 @@ async function PythonInsightRequest(competitors){
 
 }
 
-module.exports={addInsight,getInsightById}
+module.exports={addInsight,getInsightById,PythonInsightRequest}

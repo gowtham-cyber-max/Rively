@@ -1,12 +1,12 @@
 const mongoose=require("mongoose")
 
 const InsightSchema=mongoose.Schema({
-    head:{
+    insightHeading:{
         type:String,
         required:true
 
     },
-    description:{
+    insightSubtext:{
         type:String,
         required:true
     },
@@ -18,6 +18,12 @@ const InsightSchema=mongoose.Schema({
         type:mongoose.Types.ObjectId,
         ref:"Competitor",
         required:true
+    },
+    sourceUrl:{
+        type:String
+    },
+    tag:{
+        type:String
     }
 
 });

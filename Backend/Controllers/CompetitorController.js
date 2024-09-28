@@ -23,6 +23,7 @@ async function getCompanyIdByName(companyName){
     }    
 }
 
+// add insight id into one company
 async function addInsightToCompetitor(req,res){
     try{
         const {companyId,insightId}=req.body;
@@ -40,6 +41,8 @@ async function addInsightToCompetitor(req,res){
     }
 }
 
+
+// get All insights by company name
 async function getInsightByCompetitorName(req,res) {
         try{
             const {competitorName}=req.body;
@@ -56,4 +59,7 @@ async function getInsightByCompetitorName(req,res) {
 
         }
 }
+
+
+
 module.exports={getCompanyIdByName,addInsightToCompetitor,getInsightByCompetitorName};

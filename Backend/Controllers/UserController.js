@@ -1,5 +1,6 @@
 const UserModel=require("../Model/User")
 
+const {PythonInsightRequest}=require("./InsightController")
 async function addUser(req,res){
     try{
         const user=new UserModel(req.body);
@@ -23,4 +24,30 @@ async function getAllCompetitor(req,res){
     }
 }
 
-module.exports={getAllCompetitor,addUser};
+async function addInsightByCompanyName(req,res) {
+    const {userId}=req.body;
+    try{
+        const competitor=await UserModel.findById(userId).select("competitors");
+        PythonInsightRequest(competitor);
+        getUserById(userId);
+    }
+    catch(er){
+        res.status(400).json({message:er.message});
+    }
+}
+
+async function getUserById(req,res){
+
+    const {userId}=req.body;
+    try{
+        const competitor=await UserModel.findById(userId);
+        res.json(competitor);
+    }
+    catch(er){
+        res.status(400).json({message:er.message});
+    }
+}
+
+
+
+module.exports={getAllCompetitor,addUser,addInsightByCompanyName,getUserById};
