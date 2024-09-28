@@ -1,0 +1,6 @@
+*.env
+/RivelyPY/chat/__pycache__
+/RivelyPY/chat/migrations/__pycache__
+/RivelyPY/RivelyPY/__pycache__
+/RivelyPY/scrape/__pycache__
+/RivelyPY/scrape/migrations/__pycache__
