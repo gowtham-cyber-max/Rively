@@ -22,8 +22,8 @@ client = OpenAI(api_key=env('OPENAI'))
 def generate_insights(data):
     prompt = f"""
     Act as an expert in Competitive Intelligence. Your will be given data about competitors of a company obtained 
-    from credible sources. Your task is to analyse the data and extract useful insights about the competitors and return
-    in json format with the below values: insight heading, insight subtext, time, source url, and a tag from (Pricing, 
+    from credible sources. Your task is to analyse the data and extract useful insights about that company ehich is used for the competitors and return
+    in json format with the below values: insightHeading, insightSubtext, time, sourceUrl, and a tag from (Pricing, 
     Product Offering, Market Entry, Hiring, Layoffs, Management changes, Fundraising, M&A, Content Marketing, Vendors, 
     Tech stack, Specs, Event Participation, Partnerships, Clients, Media Mentions, Corporate Filings). Tone of the 
     output should be formal, straight-to-the-point. Include useful and relevant numbers and terms from the data into the
@@ -43,5 +43,5 @@ def generate_insights(data):
         content_dict = json.loads(content)
     except json.JSONDecodeError as e:
         print(f"JSONDecodeError: {e}")
-        return content
+        return None
     return content_dict

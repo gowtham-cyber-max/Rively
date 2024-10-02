@@ -15,11 +15,17 @@ app.use(cors());
 
 //routes
 const userRoutes = require('./Routes/UserRoutes');
-const domainRoutes = require('./Routes/DomainRoutes');
+// const domainRoutes = require('./Routes/DomainRoutes');
+
 
 
 app.use("/user",userRoutes);
-app.use("/domain",domainRoutes);
+// app.use("/domain",domainRoutes);
+
+
+const HobbiesRoutes = require("../Backend/Routes/HobbieRoutes");
+app.use("/hobbies", HobbiesRoutes);
+
 
 
 app.listen( 5000,() => { console.log("server in 5000") } )

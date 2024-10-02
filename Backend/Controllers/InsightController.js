@@ -4,20 +4,19 @@ const {getCompanyIdByName,addInsightToCompetitor}=require("../Controllers/Compet
 
 const axios=require("axios");
 
-async function addInsight(req,res){
+async function addInsight(element){
     try{
-        const {company,insights}=req.body;
-
-        const companyId=getCompanyIdByName(req.body.companyName);
-
-        const insight=new InsightModel({companyId,insights});
+        const {insights}=element;
+        console.log(insights)
+        
+        const insight=new InsightModel(insights);
         
         await insight.save();
-
-        addInsightToCompetitor(companyId,insight._id);
+        console.log(insight);
+        
     }
     catch(er){
-        res.status(400).json({message:er.message});
+        console.log(er)
 
     }
 
@@ -37,13 +36,16 @@ async function getInsightById(req,res){
     }
 }
 
-async function PythonInsightRequest(competitors){
+async function PythonInsightRequest(comp){
     try{
-            const Insight=await axios.post("",competitors);
-            Insight.forEach(element => {
-                req.body=element;
-                addInsight(req,res);    
-            });
+        const company=comp.competitors;
+            const Res=await axios.post("http://localhost:8000/scrape/insights",{company});
+            console.log(Res.data[0].insights);
+            for (const element of Res.data) {
+               
+                await addInsight(element); 
+
+            }
 
     }
     catch(er){

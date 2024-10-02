@@ -1,6 +1,9 @@
 const mongoose=require("mongoose")
 
 const InsightSchema=mongoose.Schema({
+    company:{
+        type:String
+    },
     insightHeading:{
         type:String,
         required:true
@@ -13,11 +16,6 @@ const InsightSchema=mongoose.Schema({
     currentDate:{
         type:Date,
         default:Date.now
-    },
-    companyId:{
-        type:mongoose.Types.ObjectId,
-        ref:"Competitor",
-        required:true
     },
     sourceUrl:{
         type:String

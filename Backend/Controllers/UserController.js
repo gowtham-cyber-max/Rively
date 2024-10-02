@@ -1,5 +1,5 @@
 const UserModel=require("../Model/User")
-
+const HobbieModel=require("../Model/Hobbie");
 const {PythonInsightRequest}=require("./InsightController")
 async function addUser(req,res){
     try{
@@ -29,7 +29,7 @@ async function addInsightByCompanyName(req,res) {
     try{
         const competitor=await UserModel.findById(userId).select("competitors");
         PythonInsightRequest(competitor);
-        getUserById(userId);
+        // getUserById(userId);
     }
     catch(er){
         res.status(400).json({message:er.message});
