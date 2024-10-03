@@ -49,7 +49,16 @@ const getTriggerAdvice = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+async function getdata(req,res){
+  try{
+      const user=await HobbieModel.findById(req.body.id);
+      res.json(user);  
+    }
+  catch(er){
+    console.log(er);
+  }
+}
 
 
 
-module.exports = { addOneUser,getTriggerAdvice };
+module.exports = { addOneUser,getTriggerAdvice,getdata };
